@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def hello_world():
     # URL of the product page
-    url = 'https://www.macys.com/shop/product/michael-michael-kors-womens-single-breasted-wool-blend-coat-created-for-macys?ID=16050718&swatchColor=Crew%20Blue%20Blue'
+    # url = 'https://www.macys.com/shop/product/michael-michael-kors-womens-single-breasted-wool-blend-coat-created-for-macys?ID=16050718&swatchColor=Crew%20Blue%20Blue'
     url = request.args.get('url')
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
@@ -20,9 +20,27 @@ def hello_world():
     #print(response.content)
     # Parse the HTML content of the page
     soup = BeautifulSoup(response.content, 'html.parser')
+    image = ""
+    title = ""
 
     # Extract image URL
     og_image = soup.find('meta', property='og:image')
+
+    if(og_image is None):
+        image = ""
+    else:
+        image = og_image.get('content')
+
     og_title = soup.find('meta', property='og:title')
-    return {"title": og_title, "image": og_image}
+    if(og_title is not None):
+        title = og_title.get('content')
+
+    if(title == ""):
+        og_title = soup.find('meta', attrs={'name': 'title'})
+        if(og_title is not None):
+            title = og_title.get('content')
+
+    print(og_image)
+    print(og_title)
+    return {"title": title, "image": image}
 
