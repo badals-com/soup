@@ -13,7 +13,19 @@ def hello_world():
     # url = 'https://www.macys.com/shop/product/michael-michael-kors-womens-single-breasted-wool-blend-coat-created-for-macys?ID=16050718&swatchColor=Crew%20Blue%20Blue'
     url = request.args.get('url')
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7", 
+        "Accept-Encoding": "gzip, deflate, br", 
+        "Accept-Language": "en-US,en;q=0.9", 
+        "Sec-Ch-Ua": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\"", 
+        "Sec-Ch-Ua-Mobile": "?0", 
+        "Sec-Ch-Ua-Platform": "\"Windows\"", 
+        "Sec-Fetch-Dest": "document", 
+        "Sec-Fetch-Mode": "navigate", 
+        "Sec-Fetch-Site": "cross-site", 
+        "Sec-Fetch-User": "?1", 
+        "Upgrade-Insecure-Requests": "1", 
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36", 
+        "X-Amzn-Trace-Id": "Root=1-655c25ce-251a8d2f2039fe1505dc4aef"
     }
     # Send a GET request to the URL
     response = requests.get(url, headers=headers)
