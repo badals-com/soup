@@ -29,7 +29,7 @@ def hello_world():
     }
     # Send a GET request to the URL
     response = requests.get(url, headers=headers)
-    #print(response.content)
+    print(response.content)
     # Parse the HTML content of the page
     soup = BeautifulSoup(response.content, 'html.parser')
     image = ""
